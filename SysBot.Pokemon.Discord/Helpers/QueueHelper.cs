@@ -21,7 +21,7 @@ public static class QueueHelper<T> where T : PKM, new()
 
         try
         {
-            const string helper = "I've added you to the queue! I'll message you here when your trade is starting.";
+            const string helper = "So, jetzt reden wir zwei Schnuckels mal ganz privat. Dein Mon wurde mir gerade von der lieben Dame aus der Pension übergeben, ich trainiere es noch fix für dich.";
             IUserMessage test = await trader.SendMessageAsync(helper).ConfigureAwait(false);
 
             // Try adding
@@ -30,7 +30,7 @@ public static class QueueHelper<T> where T : PKM, new()
             // Notify in channel
             await context.Channel.SendMessageAsync(msg).ConfigureAwait(false);
             // Notify in PM to mirror what is said in the channel.
-            await trader.SendMessageAsync($"{msg}\nYour trade code will be **{code:0000 0000}**.").ConfigureAwait(false);
+            await trader.SendMessageAsync($"{msg}\nDu kannst ja schon mal **{code:0000 0000}** in deine Switch eintippern.").ConfigureAwait(false);
 
             // Clean Up
             if (result)
@@ -73,7 +73,7 @@ public static class QueueHelper<T> where T : PKM, new()
 
         if (added == QueueResultAdd.AlreadyInQueue)
         {
-            msg = "Sorry, you are already in the queue.";
+            msg = "Bre, ich züchte doch schon. Komm wieder, wenn du dein Mon hast.";
             return false;
         }
 
@@ -86,7 +86,9 @@ public static class QueueHelper<T> where T : PKM, new()
         var pokeName = "";
         if (t == PokeTradeType.Specific && pk.Species != 0)
             pokeName = $" Receiving: {GameInfo.GetStrings(1).Species[pk.Species]}.";
-        msg = $"{user.Mention} - Added to the {type} queue{ticketID}. Current Position: {position.Position}.{pokeName}";
+        var firstPostionMessage = "Es wird auch sofort ready sein, mach dich bereit du Knecht!";
+        var laterPositionMessage = $"Allerdings sind da noch {position.Position - 1} ungeduldige TFL-Jungfern vor dir, also schau dir in der Zeit ruhig eine Folge von Frenz an.";
+        msg = $"Der PBV fängt an, dein Mon zu breeden, {user.Mention}. {(position.Position == 1 ? firstPostionMessage : laterPositionMessage)}";
 
         var botct = Info.Hub.Bots.Count;
         if (position.Position > botct)

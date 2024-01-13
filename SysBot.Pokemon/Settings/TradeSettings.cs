@@ -15,13 +15,13 @@ public class TradeSettings : IBotStateSettings, ICountSettings
     public override string ToString() => "Trade Bot Settings";
 
     [Category(TradeConfig), Description("Time to wait for a trade partner in seconds.")]
-    public int TradeWaitTime { get; set; } = 30;
+    public int TradeWaitTime { get; set; } = 120;
 
     [Category(TradeConfig), Description("Max amount of time in seconds pressing A to wait for a trade to process.")]
     public int MaxTradeConfirmTime { get; set; } = 25;
 
     [Category(TradeCode), Description("Minimum Link Code.")]
-    public int MinTradeCode { get; set; } = 8180;
+    public int MinTradeCode { get; set; } = 0000;
 
     [Category(TradeCode), Description("Maximum Link Code.")]
     public int MaxTradeCode { get; set; } = 8199;
