@@ -34,7 +34,7 @@ public static class Program
         catch (Exception)
         {
             Console.WriteLine("Unable to start bots with saved config file. Please copy your config from the WinForms project or delete it and reconfigure.");
-            Console.ReadKey();
+            Console.Read();
         }
     }
 
@@ -47,7 +47,7 @@ public static class Program
         Console.WriteLine("Created new config file since none was found in the program's path. Please configure it and restart the program.");
         Console.WriteLine("It is suggested to configure this config file using the GUI project if possible, as it will help you assign values correctly.");
         Console.WriteLine("Press any key to exit.");
-        Console.ReadKey();
+        Console.Read();
     }
 }
 
@@ -71,7 +71,7 @@ public static class BotContainer
         env.StartAll();
         Console.WriteLine($"Started all bots (Count: {prog.Bots.Length}.");
         Console.WriteLine("Press any key to stop execution and quit. Feel free to minimize this window!");
-        Console.ReadKey();
+        Console.Read();
         env.StopAll();
     }
 
